@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  uchet_back:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: uvicorn main:app --host 0.0.0.0 --port=8000
+    networks:
+      - backend_network
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+
+  uchet_front:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: yarn start
+    networks:
+      - backend_network
+    expose:
+      - 3000
+    depends_on:
+      - uchet_back
+
+
+networks:
+  backend_network:
+    driver: bridge
