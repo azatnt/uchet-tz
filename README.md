@@ -7,4 +7,3 @@
 2. docker-compose up --build
 3. go url localhost:3000
 4. choose file and upload to s3
-5.
